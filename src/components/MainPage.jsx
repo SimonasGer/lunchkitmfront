@@ -6,24 +6,38 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const MainPage = () => {
   const [dishes, setDishes] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     // Fetch dishes from the server
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found in localStorage.");
+      setError("No token found. Please log in.");
+      return;
+    }
+
     axios
-      .get("/api/dishes")
+      .get("/dishes", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
         setDishes(response.data);
       })
       .catch((error) => {
         console.error("There was an error fetching the dishes!", error);
       });
+      console.log(dishes)
   }, []);
 
   return (
     <div className="container">
       <h1 className="my-4">Food Ads</h1>
       <div className="row">
-        {dishes.map((dish) => (
+        {dishes.data.dishes.map((dish) => (
           <div className="col-lg-4 col-md-6 mb-4" key={dish._id}>
             <div className="card h-100">
               <img className="card-img-top" src={dish.image} alt={dish.name} />

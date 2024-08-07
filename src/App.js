@@ -1,5 +1,6 @@
+// src/App.js
 import React, { useState, useEffect } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css'
+import "bootstrap/dist/css/bootstrap.min.css";
 import {
   BrowserRouter as Router,
   Route,
@@ -10,6 +11,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import AddDishForm from "./components/AddDishForm";
+import MainPage from "./components/MainPage";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -29,11 +31,11 @@ function App() {
   return (
     <Router>
       <div>
-        <h1>Dienos Pietus</h1> {/* Header placeholder i guess */}
+        <h1>Dienos Pietus</h1>
         <Routes>
           <Route
             path="/"
-            element={<Navigate to={isAuthenticated ? "/logout" : "/login"} />}
+            element={isAuthenticated ? <MainPage /> : <Navigate to="/login" />}
           />
           <Route path="/register" element={<Register />} />
           <Route
@@ -50,14 +52,10 @@ function App() {
               )
             }
           />
-                <Route
+          <Route
             path="/addDish"
             element={
-              isAuthenticated ? (
-                <AddDishForm/>
-              ) : (
-                <Navigate to="/login" />
-              )
+              isAuthenticated ? <AddDishForm /> : <Navigate to="/login" />
             }
           />
         </Routes>

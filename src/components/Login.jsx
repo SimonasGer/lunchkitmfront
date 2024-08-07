@@ -17,7 +17,7 @@ const Login = ({ onLogin }) => {
         localStorage.setItem("token", response.data.data.token);
         setMessage("Login successful!");
         onLogin();
-        navigate("/addDish");
+        navigate("/");
       } else {
         setMessage("Login failed. No token received.");
       }
