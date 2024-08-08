@@ -9,7 +9,6 @@ const MainPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch dishes from the server
     const token = localStorage.getItem("token");
 
     if (!token) {
@@ -19,13 +18,14 @@ const MainPage = () => {
     }
 
     axios
-      .get("/dishes", {
+      .get("http://localhost:8080/dishes", {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
       .then((response) => {
-        setDishes(response.data);
+        console.log(response.data)
+        setDishes(response.data.data.dishes);
       })
       .catch((error) => {
         console.error("There was an error fetching the dishes!", error);
@@ -37,7 +37,7 @@ const MainPage = () => {
     <div className="container">
       <h1 className="my-4">Food Ads</h1>
       <div className="row">
-        {dishes.data.dishes.map((dish) => (
+        {dishes.map((dish) => (
           <div className="col-lg-4 col-md-6 mb-4" key={dish._id}>
             <div className="card h-100">
               <img className="card-img-top" src={dish.image} alt={dish.name} />

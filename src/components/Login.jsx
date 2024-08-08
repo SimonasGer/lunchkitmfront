@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = ({ onLogin }) => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -11,12 +11,11 @@ const Login = ({ onLogin }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/users/login", { email, password });
+      const response = await axios.post("http://localhost:8080/users/login", { email, password });
 
       if (response.data.data.token) {
         localStorage.setItem("token", response.data.data.token);
         setMessage("Login successful!");
-        onLogin();
         navigate("/");
       } else {
         setMessage("Login failed. No token received.");

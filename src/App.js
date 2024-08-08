@@ -12,51 +12,36 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import AddDishForm from "./components/AddDishForm";
 import MainPage from "./components/MainPage";
+import { Link } from "react-router-dom";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsAuthenticated(true);
-    }
-  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    setIsAuthenticated(false);
   };
 
   return (
     <Router>
       <div>
-        <h1>Dienos Pietus</h1>
+        <h1><Link to={"/"}>Dienos Pietus</Link></h1>
+        <Logout/>
         <Routes>
           <Route
             path="/"
-            element={isAuthenticated ? <MainPage /> : <Navigate to="/login" />}
+            element={<MainPage />}
           />
           <Route path="/register" element={<Register />} />
           <Route
             path="/login"
-            element={<Login onLogin={() => setIsAuthenticated(true)} />}
+            element={<Login/>}
           />
           <Route
             path="/logout"
-            element={
-              isAuthenticated ? (
-                <Logout onLogout={handleLogout} />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
+            element={"/login"}
           />
           <Route
             path="/addDish"
-            element={
-              isAuthenticated ? <AddDishForm /> : <Navigate to="/login" />
-            }
+            element={<AddDishForm/>}
           />
         </Routes>
       </div>
