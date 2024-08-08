@@ -5,13 +5,12 @@ const Logout = ({ onLogout }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    onLogout();
+    localStorage.removeItem("token")
     navigate("/login");
   };
 
   return (
     <div>
-      <h2>Logout</h2>
       <button onClick={handleLogout}>Logout</button>
     </div>
   );

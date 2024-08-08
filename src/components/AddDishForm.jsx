@@ -25,7 +25,7 @@ const AddDishForm = () => {
       if(!token){
         throw new Error("User not authentificated");
       }
-      const response = await axios.post("/dishes", dish, {
+      const response = await axios.post("http://localhost:8080/dishes", dish, {
         headers: {
           Authorization: `Bearer ${token}`
         }
