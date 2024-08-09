@@ -38,7 +38,7 @@ const MainPage = () => {
       <h1 className="my-4">Food Ads</h1>
       <div className="row">
         {dishes.map((dish) => (
-          <Dishes image={dish.image} name={dish.name} description={dish.description} price={dish.price} id={dish._id}/>
+          <Dishes image={dish.image} name={dish.title} description={dish.description} price={dish.price} id={dish._id}/>
         ))}
       </div>
       <div className="text-center my-4">

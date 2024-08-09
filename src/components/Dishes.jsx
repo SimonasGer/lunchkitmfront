@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 const Dishes = (props) => {
     const user = jwtDecode(localStorage.getItem("token")).id
     const [color, setColor] = useState("text-dark")
+    const [likes, setLikes] = useState(0)
     const [loading, setLoading] = useState(true);
 
     const handleLike = async () => {
@@ -20,6 +21,7 @@ const Dishes = (props) => {
                 }
               })
             .then((res) => {
+                setLikes(res.data.data.dish.likes.length)
                 if([res.data.data.dish.likes].includes(user)){
                     setColor("text-success")
                 }
@@ -39,6 +41,7 @@ const Dishes = (props) => {
                     }
                 })
                 .then((res) => {
+                    setLikes(res.data.data.dish.likes.length)
                     if(res.data.data.dish.likes.includes(user)){
                         setColor("text-success")
                         setLoading(false)
@@ -66,7 +69,10 @@ const Dishes = (props) => {
                 </div>
                 <div className="card-footer">
                     <small className="text-muted">Price: ${props.price}</small>
-                    <div onClick={handleLike} className={`right display-6 float-end ${color}`}>♥</div>
+                    <div className="right float-end">
+                        <div>{likes}</div>
+                        <div className={`display-6  ${color}`} onClick={handleLike} >♥</div>
+                    </div>
                 </div>
             </div>
         </div>
