@@ -56,16 +56,23 @@ const AddDishForm = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="formDishDay" className="form-label">Week day</label>
-          <input
-            type="text"
+          <label htmlFor="formDishDay" className="form-label">Choose which day it is served</label>
+          <select
             className="form-control"
             id="formDishDay"
             placeholder="Enter the day which you serve 1-7"
             name="day"
             value={dish.day}
-            onChange={handleChange}
-          />
+            onChange={handleChange}>
+                <option value="">Any day</option>   
+                <option value="1">Monday</option>
+                <option value="2">Tuesday</option>
+                <option value="3">Wednesday</option>
+                <option value="4">Thursday</option>
+                <option value="5">Friday</option>
+                <option value="6">Saturday</option>
+                <option value="7">Sunday</option>
+          </select>
         </div>
 
         <div className="mb-3">

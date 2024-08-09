@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode"
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dishes from "./Dishes";
 
@@ -11,6 +12,7 @@ const MainPage = () => {
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState("")
   const [day, setDay] = useState("")
+  const [role, setRole] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -37,6 +39,7 @@ const MainPage = () => {
 
   }, [loading]);
 
+
   const handleSearch = (e) => {
     e.preventDefault()
     const search = e.target.search.value
@@ -54,6 +57,13 @@ const MainPage = () => {
   }
     setLoading(true)
   }
+
+  useEffect(() => {
+    const userRole = localStorage.getItem("role");
+    if (userRole) {
+      setRole(userRole);
+    }
+  }, []);
 
 
   return (
@@ -81,7 +91,9 @@ const MainPage = () => {
         ))}
       </div>
       <div className="text-center my-4">
+        {role === "admin" && (
         <Link to="/addDish" className="btn btn-primary">Add dish</Link>
+        )}
       </div>
     </div>
     </>
