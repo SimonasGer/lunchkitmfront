@@ -22,9 +22,19 @@ function App() {
 
   return (
     <Router>
-      <div>
-        <h1><Link to={"/"}>Dienos Pietus</Link></h1>
-        <Logout/>
+      <div className="container mt-5">
+        <div className="row justify-content-center">
+          <div className="col-md-6 text-center">
+            <h1>
+              <Link to="/" className="text-decoration-none">Dienos Pietus</Link>
+            </h1>
+          </div>
+        </div>
+        <div className="row justify-content-center mt-3">
+          <div className="col-md-6 text-center btn-primary">
+            <Logout />
+          </div>
+        </div>
         <Routes>
           <Route
             path="/"
