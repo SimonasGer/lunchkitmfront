@@ -64,6 +64,7 @@ const MainPage = () => {
 
   return (
     <>
+    
       <div className="container my-4">
         <form onSubmit={handleSearch} className="mb-4">
           <div className="mb-3">
@@ -95,6 +96,11 @@ const MainPage = () => {
           <button type="submit" className="btn btn-primary">Search</button>
         </form>
         <h1 className="my-4 text-center">Food Ads</h1>
+        <div className="text-center my-4">
+          {role === "admin" && (
+            <Link to="/addDish" className="btn btn-primary">Add Dish</Link>
+          )}
+        </div>
         <div className="row">
           {dishes.map((dish) => (
             <Dishes
@@ -107,11 +113,7 @@ const MainPage = () => {
             />
           ))}
         </div>
-        <div className="text-center my-4">
-          {role === "admin" && (
-            <Link to="/addDish" className="btn btn-primary">Add Dish</Link>
-          )}
-        </div>
+       
       </div>
     </>
   );
