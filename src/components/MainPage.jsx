@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Dishes from "./Dishes";
 
 const MainPage = () => {
+
   const [dishes, setDishes] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -15,6 +16,9 @@ const MainPage = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    if (!localStorage.getItem("token")){
+      navigate("/login");
+    }
 
     const getDishes = () => {
       axios.get(`https://lunnchkitmbackend.vercel.app/dishes?${search}${day}`, {
