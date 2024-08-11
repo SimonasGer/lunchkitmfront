@@ -20,7 +20,7 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:8080/users/register", {
+      const response = await axios.post("https://lunnchkitmbackend.vercel.app/users/register", {
         username,
         email,
         password,

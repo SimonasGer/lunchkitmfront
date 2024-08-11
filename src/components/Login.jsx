@@ -12,7 +12,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/users/login", { email, password });
+      const response = await axios.post("https://lunnchkitmbackend.vercel.app/users/login", { email, password });
 
       if (response.data.data.token) {
         localStorage.setItem("token", response.data.data.token);

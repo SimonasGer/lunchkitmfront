@@ -17,7 +17,7 @@ const MainPage = () => {
     const token = localStorage.getItem("token");
 
     const getDishes = () => {
-      axios.get(`http://localhost:8080/dishes?${search}${day}`, {
+      axios.get(`https://lunnchkitmbackend.vercel.app/dishes?${search}${day}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

@@ -15,7 +15,7 @@ const Dishes = (props) => {
             setColor("text-dark")
         }
         try {
-            await axios.post(`http://localhost:8080/dishes/${props.id}`, {likes: user}, {
+            await axios.post(`https://lunnchkitmbackend.vercel.app/${props.id}`, {likes: user}, {
                 headers: {
                   Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -35,7 +35,7 @@ const Dishes = (props) => {
     useEffect(() => {
         const handleLoad = async ()=> {
             try {
-                await axios.get(`http://localhost:8080/dishes/${props.id}`, {
+                await axios.get(`https://lunnchkitmbackend.vercel.app/dishes/${props.id}`, {
                     headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                     }
