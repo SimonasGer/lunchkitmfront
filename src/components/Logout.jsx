@@ -12,8 +12,14 @@ const Logout = ({ onLogout }) => {
   };
 
   return (
-    <div>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="container mt-3">
+      <div className="row justify-content-center">
+        <div className="col-auto">
+          <button onClick={handleLogout} className="btn btn-primary">
+            Logout
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
