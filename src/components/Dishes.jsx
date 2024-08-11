@@ -4,6 +4,7 @@ import { jwtDecode } from "jwt-decode";
 
 const Dishes = (props) => {
     const user = jwtDecode(localStorage.getItem("token")).id
+    console.log(user)
     const [color, setColor] = useState("text-dark")
     const [likes, setLikes] = useState(0)
     const [loading, setLoading] = useState(true);
@@ -15,7 +16,7 @@ const Dishes = (props) => {
             setColor("text-dark")
         }
         try {
-            await axios.post(`https://lunnchkitmbackend.vercel.app/${props.id}`, {likes: user}, {
+            await axios.post(`https://lunnchkitmbackend.vercel.app/dishes/${props.id}`, {likes: user}, {
                 headers: {
                   Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
