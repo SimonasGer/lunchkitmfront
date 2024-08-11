@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Header = ()=> {
     const navigate = useNavigate();
     const username = localStorage.getItem("username");
-    if (!username){
+    if (!localStorage.getItem("token")){
       navigate("/login");
     }
 
