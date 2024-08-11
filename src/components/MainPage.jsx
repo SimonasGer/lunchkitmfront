@@ -4,9 +4,10 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dishes from "./Dishes";
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
-
+  const navigate = useNavigate()
   const [dishes, setDishes] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
